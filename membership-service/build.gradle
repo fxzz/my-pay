@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.example.membership'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 
 java {
@@ -34,7 +34,7 @@ tasks.named('test') {
 
 docker {
     name "${rootProject.name}-${project.name}:${version}"
-    dockerfile file('./Dockerfile')
+    dockerfile file('../Dockerfile')
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
 }
