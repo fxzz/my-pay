@@ -1,11 +1,13 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.9'
-    id 'io.spring.dependency-management' version '1.1.6'
+// id 'java'
+// id 'org.springframework.boot' version '3.2.9'
+// id 'io.spring.dependency-management' version '1.1.6'
+   id "com.palantir.docker" version "0.36.0"
 }
 
-group = 'com.example'
+group = 'com.example.membership'
 version = '0.0.1-SNAPSHOT'
+
 
 java {
     toolchain {
@@ -31,3 +33,12 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
+docker {
+    name "${rootProject.name}-${project.name}:${version}"
+    dockerfile file('./Dockerfile')
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+}
+
