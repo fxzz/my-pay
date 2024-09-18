@@ -17,6 +17,12 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(17)
@@ -37,15 +43,4 @@ subprojects {
         useJUnitPlatform()
     }
 
-    bootRun {
-        enabled = false
-    }
-
-    bootJar {
-        enabled = false
-    }
-
-    bootBuildImage {
-        enabled = false
-    }
 }
