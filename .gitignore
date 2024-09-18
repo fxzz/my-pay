@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 /db/data/*
-!db/data/.gitkeep
+
 
 ### STS ###
 .apt_generated
